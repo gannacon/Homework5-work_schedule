@@ -19,6 +19,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/advancedFormat.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/weekOfYear.js"></script>
     <title>Work Day Scheduler</title>
   </head>
 
@@ -27,9 +30,28 @@
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
+      <p id="currentTime" class="lead"></p>
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
+      <div class="input-group mb-3">
+        <input id="morning" type="text" class="form-control" placeholder="Morning" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="saveBtn" >SAVE</button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input id="lunch" type="text" class="form-control" placeholder="Lunch" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="saveBtn" >SAVE</button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input id="afternoon" type="text" class="form-control" placeholder="Afternoon" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="saveBtn" >SAVE</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -40,5 +62,6 @@
       dayjs.extend(window.dayjs_plugin_advancedFormat)
       dayjs.extend(window.dayjs_plugin_weekOfYear)
     </script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
