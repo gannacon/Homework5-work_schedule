@@ -1,12 +1,15 @@
 //------------------------------------------------------------------------------------------------------------
-//CURRENT DAY ON THE HEADER
+// SET VARIABLES
+var colorCode = document.querySelector('div input id');
+//------------------------------------------------------------------------------------------------------------
+// CURRENT DAY ON THE HEADER
 var today = dayjs();
 $('#currentDay').text(today.format('MMM Do, YYYY'));
 
 //------------------------------------------------------------------------------------------------------------
 // CURRENT TIME ON THE HEADER
 var currentTime = dayjs().format(
-  'h:mm:ss a'
+  'H'
 );
 $('#currentTime').text(currentTime);
 
@@ -25,22 +28,64 @@ $('button').on('click', function(event){
 
 //------------------------------------------------------------------------------------------------------------
 // RETRIEVE DATA FROM PREVIOUS INPUT
-function renderLastInput() {
-  // Use JSON.parse() to convert text to JavaScript object
-  var value = JSON.parse(localStorage.getItem("input"));
-  // Check if data is returned, if not exit out of the function
-  if (value !== null) {
-  $("input").id;
-  } else {
-    return;
-  }
+// This function is being called below and will run when the page loads.
+function init() {
+
+  var nineInput = localStorage.getItem('9');
+  var tenInput = localStorage.getItem('10');
+  var elevenInput = localStorage.getItem('11');
+  var twelveInput = localStorage.getItem('12');
+  var oneInput = localStorage.getItem('13');
+  var twoInput = localStorage.getItem('14');
+  var threeInput = localStorage.getItem('15');
+  var fourInput = localStorage.getItem('16');
+
+
+  document.getElementById('9').value = nineInput;
+  document.getElementById('10').value = tenInput;
+  document.getElementById('11').value = elevenInput;
+  document.getElementById('12').value = twelveInput;
+  document.getElementById('13').value = oneInput;
+  document.getElementById('14').value = twoInput;
+  document.getElementById('15').value = threeInput;
+  document.getElementById('16').value = fourInput;
+
 }
 
-// The init() function fires when the page is loaded 
-function init() {
-  // When the init function is executed, the code inside renderLastGrade function will also execute
-  renderLastInput();
+
+
+const rows = document.getElementsByClassName("row");
+let currentHour = parseInt(moment().format('H'));
+
+Array.from(rows).forEach(row => {
+  let
+    rowIdString = row.id,
+    rowHour;
+  if (rowIdString) {
+    rowHour = parseInt(rowIdString);
+  }
+  if (rowHour) {
+    // Compares row id to current hour and sets color accordingly
+    if (currentHour === rowHour) {
+      setColor(row, "red");
+    } else if ((currentHour < rowHour) && (currentHour > rowHour - 6)) {
+      setColor(row, "green");
+    } else if ((currentHour > rowHour) && (currentHour < rowHour + 6)) {
+      setColor(row, "lightgrey");
+    } else {
+      setColor(row, "white");
+    }
+  }
+});
+
+function setColor(element, color) {
+  element.style.backgroundColor = color;
 }
+
+//------------------------------------------------------------------------------------------------------------
+// CHANGE COLOR OF BLOCK IS PAST PRESENT OR FUTURE
+
+
 init();
 
 //------------------------------------------------------------------------------------------------------------
